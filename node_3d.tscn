@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://bqmtflrtnn7g3"]
+
+[ext_resource type="Shader" uid="uid://br6a4e5ddjp88" path="res://Shaders/dissolve.tres" id="1_46dnw"]
+[ext_resource type="Script" path="res://Scripts/dissolve.gd" id="2_x5svg"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_33r2f"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p1aul"]
+render_priority = 0
+shader = ExtResource("1_46dnw")
+shader_parameter/albedo = Color(0.388235, 0.454902, 0.784314, 1)
+shader_parameter/scale = 20.0
+shader_parameter/dissolve = 0.3
+
+[node name="Node3D" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_33r2f")
+surface_material_override/0 = SubResource("ShaderMaterial_p1aul")
+script = ExtResource("2_x5svg")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.782706, 0.622392, 0, -0.622392, -0.782706, 0, 1.17207, 0)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.50783)
